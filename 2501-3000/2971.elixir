@@ -1,0 +1,12 @@
+# 1016ms
+defmodule Solution do
+  @spec largest_perimeter(nums :: [integer]) :: integer
+  def largest_perimeter(nums) do
+    {nums, sum} = {Enum.sort(nums, :desc), Enum.sum(nums)}
+    solve(nums, sum)
+  end
+
+  defp solve([], _), do: -1
+  defp solve([n | _], sum) when n < sum - n, do: sum
+  defp solve([n | nums], sum), do: solve(nums, sum - n)
+end
