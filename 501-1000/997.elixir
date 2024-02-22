@@ -1,0 +1,16 @@
+defmodule Solution do
+  @spec find_judge(n :: integer, trust :: [[integer]]) :: integer
+  def find_judge(1, []), do: 1
+  def find_judge(n, trust) do
+    Enum.reduce(trust, %{}, fn [a, b], map ->
+      if Map.get(map, b) == -1 do
+        map
+      else
+        Map.update(map, b, 1, &(&1 + 1))
+      end
+      |> Map.put(a, -1)
+    end)
+    |> Enum.find({-1, 0}, fn {_, c} -> c == n - 1 end)
+    |> elem(0)
+  end
+end
