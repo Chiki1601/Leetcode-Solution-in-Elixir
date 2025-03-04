@@ -1,0 +1,8 @@
+defmodule Solution do
+  @spec check_powers_of_three(n :: integer) :: boolean
+  def check_powers_of_three(n), do: check_powers_of_three_helper(n)
+
+  defp check_powers_of_three_helper(0), do: true
+  defp check_powers_of_three_helper(n) when rem(n, 3) == 2, do: false
+  defp check_powers_of_three_helper(n), do: check_powers_of_three_helper(div(n, 3))
+end
