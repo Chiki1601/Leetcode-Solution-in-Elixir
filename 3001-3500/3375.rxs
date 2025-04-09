@@ -1,0 +1,11 @@
+defmodule Solution do
+  @spec min_operations(nums :: [integer], k :: integer) :: integer
+  def min_operations(nums, k) do
+    elems = Enum.uniq(nums)
+    if Enum.min(elems) < k do
+      -1
+    else
+      elems |> Enum.filter(fn x -> x > k end) |> Enum.count()
+    end
+  end
+end
